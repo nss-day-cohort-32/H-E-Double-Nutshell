@@ -31,6 +31,40 @@ body {
   display: inline-block;
 }
 
+.task__body {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+  height: 100%;
+}
+
+.task__header {
+  display: inline-block;
+  width: 100%;
+  height: 3rem;
+  margin: 0;
+}
+
+.task__display {
+  height: 15rem;
+  width: 100%;
+  margin: 0 .5rem;
+  border: 3px solid black;
+  overflow-y: auto;
+  align-self: baseline;
+  padding: .5rem;
+}
+
+.task__name {
+  display: inline-block;
+}
+
+.task__input__div {
+  margin-bottom: 1rem;
+  width: 100%;
+  align-self: flex-end;
+}
+
 .messages__div {
   width: 50%;
   border: 3px solid blue;

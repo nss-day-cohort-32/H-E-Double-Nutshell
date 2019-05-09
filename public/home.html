@@ -15,8 +15,36 @@
   </header>
   <main class="main">
     <div class="top__container">
+
+
       <div id="tasks__div" class="tasks__div">
-        <h3>Tasks!</h3>
+
+        <!-- body of content inside the task div -->
+        <div class="task__body">
+          <!-- task header -->
+          <h3 class="task__header">Your task list:</h3>
+
+          <!-- task output area -->
+          <section class="task__display" id="task__output">
+            <div id="task__1">
+              <input type="checkbox" id="task__checkbox__1">
+              <h5 class="task__name">Task: go to the moon later</h5>
+              <h5 class="task__name">Expected Completion
+                Date: 4/20/19</h5>
+            </div>
+
+          </section>
+
+          <!-- input div for user to add task -->
+          <div class="task__input__div">
+            <label for="new__task">Add Task:
+              <input type="text" id="new__task" placeholder="enter task..."></input>
+              <input type="date" id="task__date"></input>
+              <button class="task__button" id="submit__task">Submit Task</button>
+            </label>
+          </div>
+        </div>
+
       </div>
       <div id="messages__div" class="messages__div">
         <h3>Messages!</h3>
