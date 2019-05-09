@@ -1,0 +1,56 @@
+*, html {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.main {
+  margin-bottom: 3rem;
+}
+
+.header {
+  margin: 0 auto;
+  top: 0;
+  width: 100%;
+  border: 3px solid black;
+}
+
+.top__container {
+  display: flex;
+  width: 100%;
+  height: 25rem;
+  justify-content: space-evenly;
+}
+
+.tasks__div {
+  width: 50%;
+  border: 3px solid red;
+  display: inline-block;
+}
+
+.messages__div {
+  width: 50%;
+  border: 3px solid blue;
+  display: inline-block;
+}
+
+.bottom__container {
+  display: flex;
+  width: 100%;
+  height: 50rem;
+  justify-content: space-evenly;
+}
+
+.articles__div {
+  border: 3px solid green;
+  width: 50%;
+  height: 50rem;
+}
+.events__div {
+  border: 3px solid purple;
+  width: 50%;
+  height: 50rem;
+}
