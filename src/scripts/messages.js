@@ -1,7 +1,33 @@
-const messageBuilder = (messageObj) => {
+const messages = {
 
-    let messageSection = document.createElement("section");
+    messageBuilder(messageObj) {
+        let messageDiv = document.createElement("div");
 
-    messageSection.setAttribute("id", `message--${messageObj.id}`);
-    messageSection.setAttribute("class", "message__article")
+        messageDiv.setAttribute("id", `message--${messageObj.id}`);
+        messageDiv.setAttribute("class", "message__article");
+
+        let messageName = document.createElement("h3");
+        messageName.textContent = messageObj.userId;
+
+        let messageContent = document.createElement("section");
+        messageContent.textContent = messageObj.message;
+
+        let date = document.createElement("section");
+        date.textContent = messageObj.date;
+
+        let editButton = document.createElement("button");
+        editButton.textContent = "Edit Message";
+
+        let horizontalRule = document.createElement("hr");
+
+        messageDiv.appendChild(messageName);
+        messageDiv.appendChild(messageContent);
+        messageDiv.appendChild(date);
+        messageDiv.appendChild(editButton);
+        messageDiv.appendChild(horizontalRule);
+
+        return messageDiv
+    }
 }
+
+export default messages
