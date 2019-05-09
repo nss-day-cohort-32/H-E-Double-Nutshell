@@ -9,5 +9,5 @@ obj
 *.sqlite3
 .vscode
 dist
-database.json
 .DS_Store
+database.json
