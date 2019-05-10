@@ -15,7 +15,7 @@ const messageList = {
                     messageDocFrag.appendChild(messageHtml);
                 });
 
-                let displayDiv = document.querySelector("#messages__div");
+                let displayDiv = document.querySelector(".message__display");
                 while (displayDiv.firstChild) {
                     displayDiv.removeChild(displayDiv.firstChild);
                 }

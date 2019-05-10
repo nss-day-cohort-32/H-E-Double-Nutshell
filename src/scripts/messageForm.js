@@ -9,24 +9,24 @@ const messageForm = {
     createAndAppendForm() {
 
         let messageField = document.createElement("fieldset");
-
-        let messageFieldLabel = document.createElement("label");
-        messageFieldLabel.textContent = "Message";
+        messageField.setAttribute("class", "message__field")
 
         let messageInput = document.createElement("textarea");
-        messageInput.setAttribute("id", "message__input");
+        messageInput.setAttribute("class", "message__input");
         messageInput.setAttribute("name", "message__input");
+        messageInput.placeholder = "Enter message"
+        messageField.appendChild(messageInput);
 
         let saveButton = document.createElement("button");
-        saveButton.setAttribute("class", "save__message");
+        saveButton.setAttribute("class", "save__button");
+        saveButton.textContent = "Send"
+        messageField.appendChild(saveButton);
 
         let messageFormFrag = document.createDocumentFragment();
 
         messageFormFrag.appendChild(messageField);
-        messageFormFrag.appendChild(messageInput);
-        messageFormFrag.appendChild(saveButton);
 
-        let formArticle = document.querySelector("#messages__div");
+        let formArticle = document.querySelector(".message__input__div");
         formArticle.appendChild(messageFormFrag);
     }
 }

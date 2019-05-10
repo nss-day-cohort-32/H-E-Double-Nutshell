@@ -18,13 +18,10 @@ const messages = {
         let editButton = document.createElement("button");
         editButton.textContent = "Edit Message";
 
-        let horizontalRule = document.createElement("hr");
-
         messageDiv.appendChild(messageName);
         messageDiv.appendChild(messageContent);
         messageDiv.appendChild(date);
         messageDiv.appendChild(editButton);
-        messageDiv.appendChild(horizontalRule);
 
         return messageDiv
     }
