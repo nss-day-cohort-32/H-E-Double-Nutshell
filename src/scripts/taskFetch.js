@@ -26,11 +26,38 @@ const taskCalls = {
     return fetch(`${apiurl}`, {
       method: "POST",
       headers: {
-        "Content-Type": "applications/json"
+        "Content-Type": "application/json"
       },
       body: JSON.stringify(taskObj)
     }).then(response => response.json())
+  },
+  patchTask: function (id, obj) {
+    return fetch(`${apiurl}/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(obj)
+    }).then(response => response.json())
+  },
+  editTask: function (id, obj) {
+    return fetch(`${apiurl}/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(obj)
+    }).then(response => response.json())
+  },
+  deleteTask: function (id) {
+    return fetch(`${apiurl}/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then(response => response.json())
   }
 }
+
 
 export default taskCalls

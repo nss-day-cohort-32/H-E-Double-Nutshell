@@ -10,29 +10,191 @@ import taskCalls from "./taskFetch";
 //variables for use with the DOM
 const taskButton = document.querySelector("#submit__task");
 const taskOutput = document.querySelector("#task__output");
+const listButton = document.querySelector("#update__list");
+const taskInput = document.querySelector("#new__task");
+const dateInput = document.querySelector("#task__date");
 
 
 //function to update the task section of the DOM
 const update = () => {
-  taskCalls.postTask(tasks => {
-    tasks.forEach(taskObj => {
-      taskElementBuilder(taskObj);
+  taskOutput.innerHTML = "";
+  dateInput.valueAsDate = new Date();
+  taskCalls.getTasks()
+    .then(tasks => {
+      tasks.forEach(taskObj => {
+
+        //send elelemt to be created
+        let taskDOMObj = taskElementBuilder(taskObj);
+
+        //appends element to the DOM
+        taskOutput.appendChild(taskDOMObj);
+      })
     })
-  })
 }
 
 const taskElementBuilder = (taskObj) => {
 
+  //create single task div and set attributes
+  let taskDiv = document.createElement("div");
+  setAttributes(taskDiv, {
+    id: `task__${taskObj.id}`,
+    class: "single__task__div"
+  })
+
+  //create checkbox and set attributes
+  let taskCheckbox = document.createElement("input");
+  setAttributes(taskCheckbox, {
+    type: "checkbox",
+    id: `task__checkbox__${taskObj.id}`,
+    class: "task__checkbox__unchecked"
+  })
+
+  //create task checkbox eventlistener to change attribute
+  taskCheckbox.addEventListener("change", () => {
+    if (taskCheckbox.checked) {
+      setAttributes(taskCheckbox.parentElement, {
+        class: "single__task__div__checked"
+      })
+      let newObj = {
+        completed: true
+      }
+
+      taskCalls.patchTask(taskObj.id, newObj);
+
+    } else {
+
+      setAttributes(taskCheckbox.parentElement, {
+        class: "single__task__div"
+      })
+
+      let newObj = {
+        completed: false
+      }
+
+      taskCalls.patchTask(taskObj.id, newObj);
+    }
+  })
+
+  //append checkbox to div
+  taskDiv.appendChild(taskCheckbox);
+
+  //create task body and set attributes
+  let firstH4 = document.createElement("h4");
+  setAttributes(firstH4, {
+    class: "task__name"
+  })
+  firstH4.textContent = "Task:";
+
+  let taskText = document.createElement("p");
+  setAttributes(taskText, {
+    class: "task__name"
+  })
+  taskText.textContent = `${taskObj.task}`
+
+  let secondh4 = document.createElement("h4");
+  setAttributes(secondh4, {
+    class: "task__name"
+  })
+  secondh4.textContent = "Expected Completion Date:"
+
+  let taskDate = document.createElement("p");
+  setAttributes(taskDate, {
+    class: "task__name"
+  })
+  taskDate.textContent = `${taskObj.completionDate}`
+
+  let editTaskButton = document.createElement("button");
+  setAttributes(editTaskButton, {
+    id: `task__edit__button__${taskObj.id}`,
+    class: "task__edit__button"
+  })
+  editTaskButton.textContent = "Edit";
+
+  editTaskButton.addEventListener("click", () => {
+    let editTaskContent = taskObj.task;
+    let editTaskDate = taskObj.completionDate;
+
+    taskInput.value = editTaskContent;
+    dateInput.value = editTaskDate;
+
+    let saveTaskButton = document.createElement("button");
+    setAttributes(saveTaskButton, {
+      id: "save__task__button",
+      class: "task__button"
+    })
+    saveTaskButton.textContent = "Change Task";
+    saveTaskButton.addEventListener("click", () => {
+      let newTaskContent = taskInput.value;
+      let newTaskDate = dateInput.value;
+
+      let editedTask = taskObjBuilder(newTaskContent, newTaskDate)
+
+      taskCalls.editTask(taskObj.id, editedTask)
+        .then(update);
+
+      taskInput.value = "";
+      dateInput.value = "";
+      saveTaskButton.replaceWith(taskButton);
+    })
+
+    taskButton.replaceWith(saveTaskButton);
+  })
+
+  //append body to div
+  taskDiv.appendChild(firstH4)
+  taskDiv.appendChild(taskText)
+  taskDiv.appendChild(secondh4)
+  taskDiv.appendChild(taskDate)
+  taskDiv.appendChild(editTaskButton)
+
+  //return DOM element
+  return taskDiv;
 }
 
 
-const buttonListener = taskButton.addEventListener("click", () => {
-  let newTask = document.querySelector("#new__task").value;
-  let newDate = document.querySelector("#task__date").value;
+const addTaskListener = taskButton.addEventListener("click", () => {
+  let newTask = taskInput.value;
+  let newDate = dateInput.value;
 
   let newObject = taskObjBuilder(newTask, newDate);
 
-  taskCalls.postTask(newObject);
+  taskInput.value = "";
+  dateInput.valueAsDate = new Date();
+
+  taskCalls.postTask(newObject)
+    .then(update);
 })
 
-export default buttonListener
+
+const listUpdateListener = listButton.addEventListener("click", () => {
+  //this button will go through the task database and remove any tasks that are complete: true
+  taskCalls.getTasks()
+    .then(tasks => {
+      let toDelete = tasks.filter(task => {
+        let deleteMe = false;
+
+        if (task.completed === true) {
+          deleteMe = true;
+          return deleteMe;
+        }
+      })
+      let promisedDeletes = toDelete.map(item => {
+        return taskCalls.deleteTask(item.id)
+      })
+      Promise.all(promisedDeletes)
+        .then(update);
+    })
+})
+
+const setAttributes = (element, attributes) => {
+  for (var key in attributes) {
+    element.setAttribute(key, attributes[key]);
+  }
+}
+
+module.exports = {
+  update,
+  taskElementBuilder,
+  addTaskListener,
+  listUpdateListener
+}

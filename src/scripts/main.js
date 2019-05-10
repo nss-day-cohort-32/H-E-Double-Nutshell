@@ -1,6 +1,3 @@
-import taskCalls from "./taskFetch.js"
-import taskBuilder from "./taskObjBuilder.js"
-import buttonFunction from "./taskDOM.js"
+let taskDom = require("./taskDOM");
 
-taskCalls.getTasks();
-taskCalls.getSingleTask(66);
+taskDom.update();
