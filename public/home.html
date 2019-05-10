@@ -25,9 +25,47 @@
     <div class="bottom__container">
       <div id="articles__div" class="articles__div">
         <h3>Articles</h3>
+        <!-- body of content inside the article div -->
+        <div class="article__body">
+          <!-- article header -->
+          <h3 class="article__header">Your article list:</h3>
+          <!-- article output area -->
+          <section class="article__display" id="article__output">
+            <input type="checkbox">
+            <p><strong>Article:</strong> your article <br><strong>Expected Completion Date:</strong>
+              4/20/19</p>
+          </section>
+          <!-- input div for user to add article -->
+          <div class="article__input__div">
+            <label for="new__article">Add Article:
+              <input type="text" id="new__article" placeholder="enter article..."></input>
+              <input type="date" id="article__date"></input>
+              <button class="article__button" id="submit__article">Submit Article</button>
+            </label>
+          </div>
+        </div>
+      </div>
       </div>
       <div id="events__div" class="events__div">
         <h3>Events!</h3>
+        <!-- body of content inside the events div -->
+        <div class="events__body">
+          <!-- event header -->
+          <h3 class="events__header">Event list:</h3>
+          <!-- event output area -->
+          <section class="events__display" id="events_output">
+            </section>
+            <!-- input div for user to add event -->
+            <div class="event__input__div">
+              <label for="new__event">Add Event:
+                <input type="text" id="event__title" placeholder="enter event title..."></input>
+                <input type="date" id="event__date"></input>
+                <input type="text" id="event__location" placeholder="where is the event..."></input>
+              <button class="event__button" id="submit__event">Create Event</button>
+            </label>
+          </div>
+        </div>
+      </div>
       </div>
     </div>
   </main>
