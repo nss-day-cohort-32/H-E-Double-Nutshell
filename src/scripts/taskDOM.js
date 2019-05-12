@@ -152,24 +152,34 @@ const taskElementBuilder = (taskObj) => {
 }
 
 
+//this function allows the user to add a task to the task list
 const addTaskListener = taskButton.addEventListener("click", () => {
+  //turns date input into the americanized version of listing a date
+  let dateArray = dateInput.value.split("-");
+  let newDate = `${dateArray[1]}/${dateArray[2]}/${dateArray[0]}`;
+
   let newTask = taskInput.value;
-  let newDate = dateInput.value;
 
-  let newObject = taskObjBuilder(newTask, newDate);
+  if (taskFormValidator(newTask, newDate)) {
 
-  taskInput.value = "";
-  dateInput.valueAsDate = new Date();
+    let newObject = taskObjBuilder(newTask, newDate);
 
-  taskCalls.postTask(newObject)
-    .then(update);
+    taskInput.value = "";
+    dateInput.valueAsDate = new Date();
+
+    taskCalls.postTask(newObject)
+      .then(update);
+  }
 })
 
 
 const listUpdateListener = listButton.addEventListener("click", () => {
+
   //this button will go through the task database and remove any tasks that are complete: true
   taskCalls.getTasks()
     .then(tasks => {
+
+      //toDelete becomes an array filled with the tasks that are completed === true
       let toDelete = tasks.filter(task => {
         let deleteMe = false;
 
@@ -178,13 +188,32 @@ const listUpdateListener = listButton.addEventListener("click", () => {
           return deleteMe;
         }
       })
+
+      //we take the toDelete array and use map to turn it into an array of promises given to us from the taskCalls.deleteTask function
       let promisedDeletes = toDelete.map(item => {
         return taskCalls.deleteTask(item.id)
       })
+
+      //then once we have that array of promises, we ask javascript to complete all of them with Promise.all before moving on to update the entire page
+      //if this weren't here, it would randomly update somewhere in the array of promises, and while it would complete all those deletions is might not look that way on the DOM until you refresh
       Promise.all(promisedDeletes)
         .then(update);
     })
 })
+
+//funciton to validate the form
+const taskFormValidator = (task, date) => {
+  if (task.length >= 5 && task.length <= 50) {
+    console.log(date);
+    if (date != undefined && date != "") {
+      return true;
+    } else {
+      alert("Sorry, looks like your date isn't a valid entry");
+    };
+  } else {
+    alert("Sorry, looks like your task is either tooooo long or too short");
+  }
+}
 
 const setAttributes = (element, attributes) => {
   for (var key in attributes) {
