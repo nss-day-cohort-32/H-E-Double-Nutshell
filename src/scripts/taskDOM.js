@@ -204,7 +204,6 @@ const listUpdateListener = listButton.addEventListener("click", () => {
 //funciton to validate the form
 const taskFormValidator = (task, date) => {
   if (task.length >= 5 && task.length <= 50) {
-    console.log(date);
     if (date != undefined && date != "") {
       return true;
     } else {
