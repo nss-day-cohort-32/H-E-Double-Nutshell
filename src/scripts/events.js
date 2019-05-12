@@ -85,8 +85,8 @@ const eventsAPI = {
         return a > b ? -1 : a < b ? 1 : 0;
       });
       allEvents.forEach(eventObj => {
-        if(eventsAPI.findClosestEvent() === eventObj){
-            eventObj.classList.add("nextEvent");
+        if (eventsAPI.findClosestEvent() === eventObj) {
+          eventObj.classList.add("nextEvent");
         }
         let eventHTML = eventsDOMBuild.eventsBuilder(eventObj);
         eventsDocFragment.appendChild(eventHTML);
@@ -99,29 +99,29 @@ const eventsAPI = {
       eventsOutputArticle.appendChild(eventsDocFragment);
     });
   },
-  findClosestEvent(){
-      //find the event nearest to current date
-      //get all events
+  findClosestEvent() {
+    //find the event nearest to current date
+    //get all events
     return eventsAPI.getAllEvents().then(allEvents => {
-        var now = new Date();
-        var closest = Infinity;
-        //establishes current date
-        // console.log("date", allEvents)
-        /*forEach date (d) in events,
+      var now = new Date();
+      var closest = Infinity;
+      //establishes current date
+      // console.log("date", allEvents)
+      /*forEach date (d) in events,
         if the event date is greater than (farther away)
         or equal to the current date, AND (the event date
         is less than infinity or next closest date)
         then the event date is the nearest upcoming event
         HUZZAH!
         */
-        allEvents.forEach(function(d) {
-           var date = new Date(d.date);
-           if (date >= now && (date < new Date(closest)|| date < closest)) {
-              closest = d;
-            }
-        });
-        return closest
-    })
+      allEvents.forEach(function(d) {
+        var date = new Date(d.date);
+        if (date >= now && (date < new Date(closest) || date < closest)) {
+          closest = d;
+        }
+      });
+      return closest;
+    });
   }
 };
 
