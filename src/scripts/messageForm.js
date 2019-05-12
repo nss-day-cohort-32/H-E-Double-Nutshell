@@ -1,9 +1,11 @@
 import messageList from "./messageList"
+import messageDataCalls from "./messageDataCalls";
 
 const messageForm = {
 
     clearInputForm() {
-        document.querySelector("#messageContent").value = "";
+        document.querySelector(".message__input").value = "";
+        document.querySelector(".message__input").removeAttribute("id")
     },
 
     createAndAppendForm() {
@@ -20,6 +22,9 @@ const messageForm = {
         let saveButton = document.createElement("button");
         saveButton.setAttribute("class", "save__button");
         saveButton.textContent = "Send"
+
+        saveButton.addEventListener("click", this.handleAddNewMessage);
+
         messageField.appendChild(saveButton);
 
         let messageFormFrag = document.createDocumentFragment();
@@ -28,6 +33,40 @@ const messageForm = {
 
         let formArticle = document.querySelector(".message__input__div");
         formArticle.appendChild(messageFormFrag);
+    },
+
+    getTimeStamp() {
+        let now = new Date();
+        return ((now.getMonth() + 1) + "/" +
+            (now.getDate()) + "/" +
+            now.getFullYear() + " " +
+            now.getHours() + ":" +
+            ((now.getMinutes() < 10)
+                ? ("0" + now.getMinutes())
+                : (now.getMinutes())) + ":" +
+            ((now.getSeconds() < 10)
+                ? ("0" + now.getSeconds())
+                : (now.getSeconds())))
+    },
+
+    handleAddNewMessage() {
+
+        // let inputMessageName = document.querySelector("#messageName");
+        let inputMessageContent = document.querySelector(".message__input");
+        let inputMessageDate = messageForm.getTimeStamp();
+
+        let newMessage = {
+            // userId: inputMessageName.value,
+            message: inputMessageContent.value,
+            date: inputMessageDate
+        }
+
+        messageDataCalls.postNewMessage(newMessage)
+            .then(response => {
+                messageList.appendMessagesToDom()
+
+                messageForm.clearInputForm()
+            })
     }
 }
 

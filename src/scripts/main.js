@@ -8,5 +8,3 @@ messageDataCalls.getAllMessages()
     .then(parsedMessages => {
         console.log(parsedMessages)
     })
-
-messageList.appendMessagesToDom();
