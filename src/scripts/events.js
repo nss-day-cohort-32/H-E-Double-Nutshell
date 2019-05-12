@@ -1,15 +1,13 @@
+import eventsDOMBuild from "./eventsDOMBuild";
+
 const eventsAPI = {
   working() {
     console.log("it's working");
   },
-  getAllMyEvents(userId) {
-    fetch(`http://localhost:8088/events?userId=${userId}`)
-      .then(function(response) {
-        return response.json();
-      })
-      .then(function(myJson) {
-        console.log(JSON.stringify(myJson));
-      });
+  getAllEvents() {
+    return fetch("http://localhost:8088/events").then(function(response) {
+      return response.json();
+    });
   },
   getAllFriendEvents(userId) {
     fetch(`http://localhost:8088/events?userId=${userId}`)
@@ -46,6 +44,7 @@ const eventsAPI = {
           userId: userId
         };
         eventsAPI.postNewEvent(newEventObj);
+        eventsAPI.eventsToDom();
       });
   },
   getEventToUpdate(eventId) {
@@ -56,7 +55,7 @@ const eventsAPI = {
       }
     })
       .then(function(response) {
-        return response.json()
+        return response.json();
       })
       .then(function(newEventEntry) {
         console.log("upadte event", JSON.stringify(newEventEntry));
@@ -77,22 +76,52 @@ const eventsAPI = {
       });
   },
   eventsToDom() {
-    this.getAllMyEvents("events").then(allEvents => {
+    eventsAPI.getAllEvents().then(allEvents => {
       let eventsDocFragment = document.createDocumentFragment();
-
+      //sorts events by date
+      allEvents = allEvents.sort(function(a, b) {
+        a = new Date(a.date);
+        b = new Date(b.date);
+        return a > b ? -1 : a < b ? 1 : 0;
+      });
       allEvents.forEach(eventObj => {
-        let eventHTML = events__DOM.eventsBuilder(eventObj);
+        if(eventsAPI.findClosestEvent() === eventObj){
+            eventObj.classList.add("nextEvent");
+        }
+        let eventHTML = eventsDOMBuild.eventsBuilder(eventObj);
         eventsDocFragment.appendChild(eventHTML);
       });
 
-      let eventsOutputArticle = document.querySelector(".output__events");
-
+      let eventsOutputArticle = document.querySelector("#events__output");
       while (eventsOutputArticle.firstChild) {
         eventsOutputArticle.removeChild(eventsOutputArticle.firstChild);
       }
       eventsOutputArticle.appendChild(eventsDocFragment);
-
     });
+  },
+  findClosestEvent(){
+      //find the event nearest to current date
+      //get all events
+    return eventsAPI.getAllEvents().then(allEvents => {
+        var now = new Date();
+        var closest = Infinity;
+        //establishes current date
+        // console.log("date", allEvents)
+        /*forEach date (d) in events,
+        if the event date is greater than (farther away)
+        or equal to the current date, AND (the event date
+        is less than infinity or next closest date)
+        then the event date is the nearest upcoming event
+        HUZZAH!
+        */
+        allEvents.forEach(function(d) {
+           var date = new Date(d.date);
+           if (date >= now && (date < new Date(closest)|| date < closest)) {
+              closest = d;
+            }
+        });
+        return closest
+    })
   }
 };
 

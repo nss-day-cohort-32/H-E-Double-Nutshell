@@ -1,0 +1,39 @@
+.events__div {
+    width: 50%;
+    border: 3px solid red;
+    display: inline-block;
+  }
+  .events__body {
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+    height: 100%;
+  }
+  .events__header {
+    display: inline-block;
+    width: 100%;
+    height: 3rem;
+    margin: 0;
+  }
+  .events__display {
+    height: 15rem;
+    width: 100%;
+    margin: 0 .5rem;
+    border: 3px solid black;
+    overflow-y: auto;
+    align-self: baseline;
+    padding: .5rem;
+  }
+  .events__name {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+  }
+  .events__input__div {
+    margin-bottom: 1rem;
+    width: 100%;
+    align-self: flex-end;
+  }
+  .nearest__event {
+      background-color: greenyellow;
+  }
