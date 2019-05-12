@@ -160,7 +160,7 @@ const addTaskListener = taskButton.addEventListener("click", () => {
 
   let newTask = taskInput.value;
 
-  if (taskFormValidator(newTask, newDate)) {
+  if (taskFormValidator(newTask, newDate.value)) {
 
     let newObject = taskObjBuilder(newTask, newDate);
 
