@@ -100,11 +100,10 @@ const eventsAPI = {
     });
   },
   findClosestEvent() {
+      var closest = Infinity;
     //find the event nearest to current date
     //get all events
-    return eventsAPI.getAllEvents().then(allEvents => {
-      var now = new Date();
-      var closest = Infinity;
+    eventsAPI.getAllEvents().then(allEvents => {
       //establishes current date
       // console.log("date", allEvents)
       /*forEach date (d) in events,
@@ -112,15 +111,17 @@ const eventsAPI = {
         or equal to the current date, AND (the event date
         is less than infinity or next closest date)
         then the event date is the nearest upcoming event
-        HUZZAH!
-        */
-      allEvents.forEach(function(d) {
-        var date = new Date(d.date);
-        if (date >= now && (date < new Date(closest) || date < closest)) {
-          closest = d;
+        HUZZAH!*/
+        var now = new Date();
+      allEvents.forEach(function(event) {
+        var eventDate = new Date(event.date);
+        // console.log("event date", eventDate);
+        if (eventDate >= now && (eventDate < new Date(closest) || eventDate < closest)) {
+            closest = event;
+        //   console.log("closest", closest)
         }
       });
-      return closest;
+      console.log("closest", closest)
     });
   }
 };

@@ -2,15 +2,18 @@ import eventsAPI from "./events.js";
 
 const eventsDOMBuild = {
   eventsBuilder(eventsObj) {
-    let closestEvent = eventsAPI.findClosestEvent();
-    console.log("closest event", closestEvent);
-    console.log("events obj", eventsObj);
+    eventsAPI.findClosestEvent()
+    .then(event => {
+      // console.log("event",event)
+      if (eventsObj.date === event.date) {
+        eventsContainer.setAttribute("class", "nearest__event");
+        // console.log("it worked!!!!!!!");
+      }
+    })
+    // console.log("closest event", closestEvent);
+    // console.log("events obj", eventsObj);
     let eventsContainer = document.createElement("div");
     eventsContainer.setAttribute("id", `events__${eventsObj.id}`);
-    if (eventsObj.date === closestEvent.date) {
-      eventsContainer.setAttribute("class", "nearest__event");
-      console.log("it worked!!!!!!!");
-    }
     let eventNames = document.createElement("h3");
     eventNames.textContent = eventsObj.title;
     let eventDates = document.createElement("p");
