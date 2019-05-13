@@ -11,3 +11,4 @@ obj
 dist
 api/database.json
 .DS_Store
+database.json
