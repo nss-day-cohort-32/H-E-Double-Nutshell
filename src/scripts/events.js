@@ -103,7 +103,7 @@ const eventsAPI = {
       var closest = Infinity;
     //find the event nearest to current date
     //get all events
-    eventsAPI.getAllEvents().then(allEvents => {
+    return eventsAPI.getAllEvents().then(allEvents => {
       //establishes current date
       // console.log("date", allEvents)
       /*forEach date (d) in events,
@@ -121,7 +121,7 @@ const eventsAPI = {
         //   console.log("closest", closest)
         }
       });
-      console.log("closest", closest)
+      return closest
     });
   }
 };

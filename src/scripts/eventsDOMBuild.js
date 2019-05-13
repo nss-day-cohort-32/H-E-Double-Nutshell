@@ -24,7 +24,24 @@ const eventsDOMBuild = {
     eventUpdateButton.innerHTML = "update event";
     eventUpdateButton.setAttribute("id", `events__button__${eventsObj.id}`);
     eventUpdateButton.addEventListener("click", function() {
-      console.log(`you clicked ${eventsObj.id} button`);
+      console.log(eventsObj.id);
+      const eventTitleInput = document.getElementById("event__title");
+      const eventDateInput = document.getElementById("event__date");
+      const eventLocationInput = document.getElementById("event__location");
+
+      let selectedEventTitle = eventsObj.title;
+      let selectedEventDate = eventsObj.date;
+      let selectedEventLocation = eventsObj.location;
+
+      eventTitleInput.value = selectedEventTitle;
+      eventDateInput.value = selectedEventDate;
+      eventLocationInput.value = selectedEventLocation;
+
+      let eventId = eventsObj.id
+      console.log("eventId", eventId);
+
+      eventsAPI.updateEvent(eventId)
+
     });
     let outputEventsArticle = document.querySelector("#events__output");
     eventsContainer.appendChild(eventNames);
