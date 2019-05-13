@@ -20,15 +20,30 @@ const messageDataCalls = {
         })
     },
 
-    putEditedMessage(messageId, messageToEdit) {
+    patchEditedMessage(messageId, messageToEdit) {
         return fetch(`http://localhost:8088/messages/${messageId}`, {
-            method: "PUT",
+            method: "PATCH",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(messageToEdit)
         })
-    }
+    },
+
+    // const updateChicken = (chickenId, chickenObj) => {
+    //     fetch(`${apiBaseURL}/chicken/${chickenId}`,
+    //         {
+    //             method: "PATCH",
+    //             headers: {
+    //                 "content-type": "application/json"
+    //             },
+    //             body: JSON.stringify(chickenObj)
+    //         }
+    //     )
+    //     .then(response => response.json())
+    //     .then(parsedResult => {
+    //         console.log("updated chicken", parsedResult);
+    //     })
 }
 
 export default messageDataCalls

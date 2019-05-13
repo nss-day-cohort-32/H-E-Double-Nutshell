@@ -1,5 +1,6 @@
 import messageList from "./messageList"
 import messageDataCalls from "./messageDataCalls";
+import messages from "./messages"
 
 const messageForm = {
 
@@ -13,19 +14,50 @@ const messageForm = {
         let messageField = document.createElement("fieldset");
         messageField.setAttribute("class", "message__field")
 
+        let messageEditId = document.createElement("input");
+        messageEditId.setAttribute("type", "hidden");
+        messageEditId.setAttribute("id", "messsage__edit__id")
+        messageField.appendChild(messageEditId);
+
+
         let messageInput = document.createElement("textarea");
         messageInput.setAttribute("class", "message__input");
         messageInput.setAttribute("name", "message__input");
         messageInput.placeholder = "Enter message"
         messageField.appendChild(messageInput);
 
-        let saveButton = document.createElement("button");
-        saveButton.setAttribute("class", "save__button");
-        saveButton.textContent = "Send"
+        let sendButton = document.createElement("button");
+        sendButton.setAttribute("class", "send__button");
+        sendButton.textContent = "Send"
 
-        saveButton.addEventListener("click", this.handleAddNewMessage);
+        let updateButton = document.createElement("button");
+        updateButton.setAttribute("class", "update__button");
+        updateButton.textContent = "Update"
 
-        messageField.appendChild(saveButton);
+        updateButton.addEventListener("click", () => {
+            let inputMessageContent = document.querySelector(".message__input");
+            let inputMessageId = document.querySelector("#messsage__edit__id").value;
+            let inputMessageDate = messageForm.getTimeStamp();
+            let editedMessage = {
+                // id: inputMessageId.value,
+                message: inputMessageContent.value,
+                date: inputMessageDate
+            }
+            console.log("lol", editedMessage)
+
+            messageDataCalls.patchEditedMessage(inputMessageId, editedMessage)
+                .then(response => {
+                    messageList.appendMessagesToDom()
+                })
+        })
+
+
+
+        sendButton.addEventListener("click", this.handleAddNewMessage);
+
+
+        messageField.appendChild(sendButton);
+        messageField.appendChild(updateButton);
 
         let messageFormFrag = document.createDocumentFragment();
 

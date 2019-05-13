@@ -46,7 +46,13 @@
     margin-top: .5rem;
 }
 
-.save__button {
+.send__button {
     float: right;
     margin-top: .6rem;
 }
+
+/* .update__button {
+    display: none;
+    float: right;
+    margin-top: .6rem;
+} */
