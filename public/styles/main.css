@@ -31,11 +31,6 @@ body {
   display: inline-block;
 }
 
-.single__task__div__checked {
-  color: grey;
-  text-decoration: line-through;
-}
-
 .messages__div {
   width: 50%;
   border: 3px solid blue;

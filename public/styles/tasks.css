@@ -36,3 +36,8 @@
   width: 100%;
   align-self: flex-end;
 }
+
+.single__task__div__checked > * {
+  color: red;
+  text-decoration: line-through;
+}

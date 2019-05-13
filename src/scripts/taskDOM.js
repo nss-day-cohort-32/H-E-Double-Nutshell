@@ -114,8 +114,11 @@ const taskElementBuilder = (taskObj) => {
     let editTaskContent = taskObj.task;
     let editTaskDate = taskObj.completionDate;
 
+    let dateArray = editTaskDate.split("/");
+    let newDate = `${dateArray[2]}-${dateArray[0]}-${dateArray[1]}`;
+
     taskInput.value = editTaskContent;
-    dateInput.value = editTaskDate;
+    dateInput.value = newDate;
 
     let saveTaskButton = document.createElement("button");
     setAttributes(saveTaskButton, {
@@ -125,9 +128,11 @@ const taskElementBuilder = (taskObj) => {
     saveTaskButton.textContent = "Change Task";
     saveTaskButton.addEventListener("click", () => {
       let newTaskContent = taskInput.value;
-      let newTaskDate = dateInput.value;
+      let dateArray = dateInput.value.split("-");
 
-      let editedTask = taskObjBuilder(newTaskContent, newTaskDate)
+      let newDate = `${dateArray[1]}/${dateArray[2]}/${dateArray[0]}`;
+
+      let editedTask = taskObjBuilder(newTaskContent, newDate)
 
       taskCalls.editTask(taskObj.id, editedTask)
         .then(update);
@@ -160,7 +165,7 @@ const addTaskListener = taskButton.addEventListener("click", () => {
 
   let newTask = taskInput.value;
 
-  if (taskFormValidator(newTask, newDate.value)) {
+  if (taskFormValidator(newTask, newDate)) {
 
     let newObject = taskObjBuilder(newTask, newDate);
 
