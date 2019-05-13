@@ -1,7 +1,9 @@
+
 // import articleAPI from "./articles";
 // articleAPI.working();
 // articleAPI.getAllArticles(1);
 // articleAPI.articlesToDom();
+//Dan's imports for Events
 
 import eventsAPI from "./events";
 // eventsAPI.getAllEvents();
