@@ -19,10 +19,14 @@
         "no-unused-vars": "warn",
         "constructor-super": "warn",
         "valid-typeof": "warn",
-        "quotes": ["warn", "double"],
+        "quotes": [
+            "warn",
+            "double"
+        ],
         "no-trailing-spaces": 2
     },
     "globals": {
-        "$": true
+        "$": true,
+        "Promise": true
     }
-    }
+}

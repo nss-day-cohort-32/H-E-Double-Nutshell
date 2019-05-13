@@ -7,6 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Welcome to Nutshell!</title>
   <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/tasks.css">
   <link rel="stylesheet" href="./styles/messages.css">
 </head>
 
@@ -16,8 +17,29 @@
   </header>
   <main class="main">
     <div class="top__container">
+
+
       <div id="tasks__div" class="tasks__div">
-        <h3>Tasks!</h3>
+
+        <!-- body of content inside the task div -->
+        <div class="task__body">
+          <!-- task header -->
+          <h3 class="task__header">Your task list:</h3>
+
+          <!-- task output area -->
+          <section class="task__display" id="task__output"></section>
+          <button id="update__list">Update List</button>
+
+          <!-- input div for user to add task -->
+          <div class="task__input__div">
+            <label for="new__task">Add Task:
+              <input type="text" id="new__task" placeholder="enter task..."></input>
+              <input type="date" id="task__date"></input>
+              <button class="task__button" id="submit__task">Submit Task</button>
+            </label>
+          </div>
+        </div>
+
       </div>
       <!-- MessageDiv -->
       <div id="messages__div" class="messages__div">
