@@ -8,6 +8,7 @@
   <title>Welcome to Nutshell!</title>
   <link rel="stylesheet" href="styles/main.css">
   <link rel="stylesheet" href="styles/tasks.css">
+  <link rel="stylesheet" href="./styles/messages.css">
 </head>
 
 <body>
@@ -40,8 +41,15 @@
         </div>
 
       </div>
+      <!-- MessageDiv -->
       <div id="messages__div" class="messages__div">
-        <h3>Messages!</h3>
+        <div class="message__body">
+          <h3 class="message__header">Messages Board</h3>
+
+          <!-- Message Output Area -->
+          <section class="message__display" id="message__output"></section>
+          <div class="message__input__div"></div>
+        </div>
       </div>
     </div>
     <div class="bottom__container">
