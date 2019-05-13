@@ -36,11 +36,17 @@ const eventsDOMBuild = {
       eventTitleInput.value = selectedEventTitle;
       eventDateInput.value = selectedEventDate;
       eventLocationInput.value = selectedEventLocation;
-
+      
       let eventId = eventsObj.id
       console.log("eventId", eventId);
 
-      eventsAPI.updateEvent(eventId)
+      let inputEventsArticle = document.querySelector(".event__input__div");
+      let putEventUpdate = document.createElement("button");
+      putEventUpdate.innerHTML = "submit updated event"
+      inputEventsArticle.appendChild(putEventUpdate);
+      putEventUpdate.addEventListener("click", function())
+
+
 
     });
     let outputEventsArticle = document.querySelector("#events__output");
