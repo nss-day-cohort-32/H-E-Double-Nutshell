@@ -165,9 +165,12 @@ const addTaskListener = taskButton.addEventListener("click", () => {
 
   let newTask = taskInput.value;
 
+  let userId = sessionStorage.getItem("userId");
+  let numberId = Number(userId);
+
   if (taskFormValidator(newTask, newDate)) {
 
-    let newObject = taskObjBuilder(newTask, newDate);
+    let newObject = taskObjBuilder(numberId, newTask, newDate);
 
     taskInput.value = "";
     dateInput.valueAsDate = new Date();

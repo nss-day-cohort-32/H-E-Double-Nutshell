@@ -4,9 +4,10 @@
     Purpose: function to build task object for use with database
 */
 
-const taskObjBuilder = (task, completionDate) => {
+const taskObjBuilder = (userId, task, completionDate) => {
 
   let taskObject = {
+    "userId": userId,
     "task": `${task}`,
     "completionDate": `${completionDate}`,
     "completed": false

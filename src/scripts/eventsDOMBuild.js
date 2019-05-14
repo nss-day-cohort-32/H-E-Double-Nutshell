@@ -3,13 +3,13 @@ import eventsAPI from "./events.js";
 const eventsDOMBuild = {
   eventsBuilder(eventsObj) {
     eventsAPI.findClosestEvent()
-    .then(event => {
-      // console.log("event",event)
-      if (eventsObj.date === event.date) {
-        eventsContainer.setAttribute("class", "nearest__event");
-        // console.log("it worked!!!!!!!");
-      }
-    })
+      .then(event => {
+        // console.log("event",event)
+        if (eventsObj.date === event.date) {
+          eventsContainer.setAttribute("class", "nearest__event");
+          // console.log("it worked!!!!!!!");
+        }
+      })
     // console.log("closest event", closestEvent);
     // console.log("events obj", eventsObj);
     let eventsContainer = document.createElement("div");
@@ -23,7 +23,7 @@ const eventsDOMBuild = {
     let eventUpdateButton = document.createElement("button");
     eventUpdateButton.innerHTML = "update event";
     eventUpdateButton.setAttribute("id", `events__button__${eventsObj.id}`);
-    eventUpdateButton.addEventListener("click", function() {
+    eventUpdateButton.addEventListener("click", function () {
       console.log(eventsObj.id);
       const eventTitleInput = document.getElementById("event__title");
       const eventDateInput = document.getElementById("event__date");
@@ -36,7 +36,7 @@ const eventsDOMBuild = {
       eventTitleInput.value = selectedEventTitle;
       eventDateInput.value = selectedEventDate;
       eventLocationInput.value = selectedEventLocation;
-      
+
       let eventId = eventsObj.id
       console.log("eventId", eventId);
 
@@ -44,7 +44,7 @@ const eventsDOMBuild = {
       let putEventUpdate = document.createElement("button");
       putEventUpdate.innerHTML = "submit updated event"
       inputEventsArticle.appendChild(putEventUpdate);
-      putEventUpdate.addEventListener("click", function())
+      // putEventUpdate.addEventListener("click", function())
 
 
 

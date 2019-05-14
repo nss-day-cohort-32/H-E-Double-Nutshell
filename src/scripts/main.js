@@ -3,12 +3,23 @@
 // articleAPI.getAllArticles(1);
 // articleAPI.articlesToDom();
 
+//burak's login import
+import login from "./login"
+
+const loginbtn = document.getElementById("login");
+loginbtn.addEventListener("click", () => {
+  login.ActivateUser()
+});
+
+// login.registerUser()
+
 import eventsAPI from "./events";
 // eventsAPI.getAllEvents();
 eventsAPI.createNewEventOnClick(2);
 // eventsAPI.getEventToUpdate(1);
 eventsAPI.eventsToDom();
 eventsAPI.findClosestEvent();
+
 //eliot's imports for tasks
 let taskDom = require("./taskDOM");
 
@@ -17,14 +28,18 @@ import messageForm from "./messageForm"
 import messageDataCalls from "./messageDataCalls"
 import messageList from "./messageList"
 
-//tasks functions
+//eliot's task functions
 taskDom.update();
+
+//eliot's user search import
+import userSearch from "./userSearch"
+
+userSearch.fetchUsers();
+
 
 //messages functions
 messageForm.createAndAppendForm();
 messageList.appendMessagesToDom()
 messageDataCalls.getAllMessages()
-  .then(parsedMessages => {
-    console.log(parsedMessages)
-  })
+
 
