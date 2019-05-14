@@ -5,6 +5,12 @@
 body {
   padding: 0;
   margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background: #F2F2F2;
+}
+
+h3 {
+  font-weight: 700;
 }
 
 .main {
@@ -14,8 +20,19 @@ body {
 .header {
   margin: 0 auto;
   top: 0;
-  width: 100%;
   border: 3px solid black;
+  margin: .2rem .2rem;
+  border-radius: .2rem;
+  padding-right: .2rem;
+}
+
+.welcome__message {
+  display: inline-block;
+}
+
+.user__search__div {
+  float: right;
+  margin-top: 2rem;
 }
 
 .top__container {
@@ -27,14 +44,18 @@ body {
 
 .tasks__div {
   width: 50%;
-  border: 3px solid red;
+  border: 3px solid black;
   display: inline-block;
+  margin: .2rem .2rem;
+  border-radius: .2rem;
 }
 
 .messages__div {
   width: 50%;
-  border: 3px solid blue;
+  border: 3px solid black;
   display: inline-block;
+  margin: .2rem .2rem;
+  border-radius: .2rem;
 }
 
 .bottom__container {
@@ -45,12 +66,16 @@ body {
 }
 
 .articles__div {
-  border: 3px solid green;
+  border: 3px solid black;
   width: 50%;
   height: 50rem;
+  margin: .2rem .2rem;
+  border-radius: .2rem;
 }
 .events__div {
-  border: 3px solid purple;
+  border: 3px solid black;
   width: 50%;
   height: 50rem;
+  margin: .2rem .2rem;
+  border-radius: .2rem;
 }
