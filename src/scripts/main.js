@@ -6,10 +6,8 @@
 //burak's login import
 import login from "./login"
 
-const loginbtn = document.getElementById("login");
-loginbtn.addEventListener("click", () => {
-  login.ActivateUser()
-});
+login.loginActivate()
+login.registerUser()
 
 // login.registerUser()
 
@@ -41,5 +39,3 @@ userSearch.fetchUsers();
 messageForm.createAndAppendForm();
 messageList.appendMessagesToDom()
 messageDataCalls.getAllMessages()
-
-
