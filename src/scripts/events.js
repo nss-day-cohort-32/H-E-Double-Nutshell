@@ -1,9 +1,6 @@
-import eventsDOMBuild from "./eventsDOMBuild";
+let eventsDOMBuild = require('./eventsDOMBuild');
 
 const eventsAPI = {
-  working() {
-    console.log("it's working");
-  },
   getAllEvents() {
     return fetch("http://localhost:8088/events").then(function(response) {
       return response.json();
@@ -19,7 +16,7 @@ const eventsAPI = {
       });
   },
   postNewEvent(newEventObj) {
-    fetch("http://localhost:8088/events", {
+    return fetch("http://localhost:8088/events", {
       method: "POST",
       body: JSON.stringify(newEventObj), // data can be `string` or {object}!
       headers: {
@@ -33,6 +30,31 @@ const eventsAPI = {
         console.log("new event", JSON.stringify(newEventEntry));
       });
   },
+  putEvent(eventObj, id) {
+    return fetch(`http://localhost:8088/events/${id}`, {
+      method: "PUT",
+      body: JSON.stringify(eventObj), // data can be `string` or {object}!
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(newEventEntry) {
+        console.log("updated event", JSON.stringify(newEventEntry));
+        eventsDOMBuild.updateDOM();
+      });
+  },
+  updateEventOnClick(userId, id) {
+        const eventObj = {
+          date: document.querySelector("#event__date").value,
+          title: document.querySelector("#event__title").value,
+          location: document.querySelector("#event__location").value,
+          userId: userId
+        };
+        return eventsAPI.putEvent(eventObj, id)
+  },
   createNewEventOnClick(userId) {
     document
       .getElementById("submit__event")
@@ -43,36 +65,8 @@ const eventsAPI = {
           location: document.querySelector("#event__location").value,
           userId: userId
         };
-        eventsAPI.postNewEvent(newEventObj);
-        eventsAPI.eventsToDom();
-      });
-  },
-  getEventToUpdate(eventId) {
-    fetch(`http://localhost:8088/events?id=${eventId}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-      .then(function(response) {
-        return response.json();
-      })
-      .then(function(newEventEntry) {
-        console.log("upadte event", JSON.stringify(newEventEntry));
-      });
-  },
-  updateEvent(eventId) {
-    fetch(`http://localhost:8088/events?id=${eventId}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-      .then(function(response) {
-        return response.json();
-      })
-      .then(function(newEventEntry) {
-        console.log("new event", JSON.stringify(newEventEntry));
+        return eventsAPI.postNewEvent(newEventObj)
+        // .then(eventsDOMBuild.updateDOM());
       });
   },
   eventsToDom() {
@@ -82,46 +76,19 @@ const eventsAPI = {
       allEvents = allEvents.sort(function(a, b) {
         a = new Date(a.date);
         b = new Date(b.date);
-        return a > b ? -1 : a < b ? 1 : 0;
+        return a < b ? -1 : a > b ? 1 : 0;
       });
+      //displays events past current date
       allEvents.forEach(eventObj => {
-        if (eventsAPI.findClosestEvent() === eventObj) {
-          eventObj.classList.add("nextEvent");
+        let now = new Date();
+        let eventDate = new Date(eventObj.date);
+        if (eventDate >= now) {
+          let eventHTML = eventsDOMBuild.eventsBuilder(eventObj)
+          eventsDocFragment.appendChild(eventHTML);
         }
-        let eventHTML = eventsDOMBuild.eventsBuilder(eventObj);
-        eventsDocFragment.appendChild(eventHTML);
+        let eventsOutputArticle = document.querySelector("#events__output");
+        eventsOutputArticle.appendChild(eventsDocFragment);
       });
-
-      let eventsOutputArticle = document.querySelector("#events__output");
-      while (eventsOutputArticle.firstChild) {
-        eventsOutputArticle.removeChild(eventsOutputArticle.firstChild);
-      }
-      eventsOutputArticle.appendChild(eventsDocFragment);
-    });
-  },
-  findClosestEvent() {
-      var closest = Infinity;
-    //find the event nearest to current date
-    //get all events
-    return eventsAPI.getAllEvents().then(allEvents => {
-      //establishes current date
-      // console.log("date", allEvents)
-      /*forEach date (d) in events,
-        if the event date is greater than (farther away)
-        or equal to the current date, AND (the event date
-        is less than infinity or next closest date)
-        then the event date is the nearest upcoming event
-        HUZZAH!*/
-        var now = new Date();
-      allEvents.forEach(function(event) {
-        var eventDate = new Date(event.date);
-        // console.log("event date", eventDate);
-        if (eventDate >= now && (eventDate < new Date(closest) || eventDate < closest)) {
-            closest = event;
-        //   console.log("closest", closest)
-        }
-      });
-      return closest
     });
   }
 };

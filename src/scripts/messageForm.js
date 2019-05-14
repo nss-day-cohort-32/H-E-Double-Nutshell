@@ -1,6 +1,6 @@
-import messageList from "./messageList"
+// import messageList from "./messageList"
 import messageDataCalls from "./messageDataCalls";
-import messages from "./messages"
+// import messages from "./messages"
 
 const messageForm = {
 
@@ -45,10 +45,10 @@ const messageForm = {
             }
             console.log("lol", editedMessage)
 
-            messageDataCalls.patchEditedMessage(inputMessageId, editedMessage)
-                .then(response => {
-                    messageList.appendMessagesToDom()
-                })
+            // messageDataCalls.patchEditedMessage(inputMessageId, editedMessage)
+            //     .then(response => {
+            //         messageList.appendMessagesToDom()
+            //     })
         })
 
 
@@ -94,11 +94,11 @@ const messageForm = {
         }
 
         messageDataCalls.postNewMessage(newMessage)
-            .then(response => {
-                messageList.appendMessagesToDom()
+            // .then(response => {
+            //     messageList.appendMessagesToDom()
 
-                messageForm.clearInputForm()
-            })
+            //     messageForm.clearInputForm()
+            // })
     }
 }
 
