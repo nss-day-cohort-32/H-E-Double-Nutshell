@@ -1,6 +1,6 @@
 import messageDataCalls from "./messageDataCalls";
-import messageForm from "./messageForm";
-import messageList from "./messageList";
+// import messageForm from "./messageForm";
+// import messageList from "./messageList";
 
 
 const messages = {
