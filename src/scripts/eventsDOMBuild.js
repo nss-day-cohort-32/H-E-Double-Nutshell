@@ -70,7 +70,6 @@ const eventsBuilder = (eventsObj) => {
       eventDateInput.value = selectedEventDate;
       eventLocationInput.value = selectedEventLocation;
 
-
       //toggle create event button
       let createEventButton = document.getElementById("submit__event");
       let replaceUpdateButton = document.createElement("button")
