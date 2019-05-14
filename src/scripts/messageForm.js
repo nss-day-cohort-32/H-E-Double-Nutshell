@@ -83,12 +83,12 @@ const messageForm = {
 
     handleAddNewMessage() {
 
-        // let inputMessageName = document.querySelector("#messageName");
+        let nameId = sessionStorage.getItem("userName")
         let inputMessageContent = document.querySelector(".message__input");
         let inputMessageDate = messageForm.getTimeStamp();
 
         let newMessage = {
-            // userId: inputMessageName.value,
+            userId: nameId,
             message: inputMessageContent.value,
             date: inputMessageDate
         }
