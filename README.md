@@ -15,4 +15,4 @@ Burak Koc
 Dan Storm
 Ricky McConnell
 
-![Webpage][Screen Shot 2019-05-14 at 9.27.13 AM.png]
+![Webpage](https://github.com/nss-day-cohort-32/H-E-Double-Nutshell/blob/master/public/Screen%20Shot%202019-05-14%20at%209.27.13%20AM.png?raw=true)
