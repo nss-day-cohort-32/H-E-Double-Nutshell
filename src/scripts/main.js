@@ -1,7 +1,9 @@
+
 // import articleAPI from "./articles";
 // articleAPI.working();
 // articleAPI.getAllArticles(1);
 // articleAPI.articlesToDom();
+//Dan's imports for Events
 
 //burak's login import
 import login from "./login"
@@ -14,11 +16,8 @@ loginbtn.addEventListener("click", () => {
 // login.registerUser()
 
 import eventsAPI from "./events";
-// eventsAPI.getAllEvents();
 eventsAPI.createNewEventOnClick(2);
-// eventsAPI.getEventToUpdate(1);
 eventsAPI.eventsToDom();
-eventsAPI.findClosestEvent();
 
 //eliot's imports for tasks
 let taskDom = require("./taskDOM");
