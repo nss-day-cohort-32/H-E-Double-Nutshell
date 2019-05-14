@@ -1,8 +1,5 @@
 import messageDataCalls from "./messageDataCalls";
 
-// let grabSendButton = document.querySelector(".send__button");
-// let grabUpdateButton = document.querySelector(".update__button");
-
 const messages = {
 
     messageBuilder(messageObj) {
@@ -24,8 +21,6 @@ const messages = {
         editButton.textContent = "Edit Message";
 
         editButton.addEventListener("click", () => {
-            // sendButton.setAttribute("class", "hidden");
-            // updateButton.setAttribute("class", "unhidden");
             const messageEdit = document.querySelector(".message__input");
             const messageEditId = document.querySelector("#messsage__edit__id");
             let newMess = messageObj.message

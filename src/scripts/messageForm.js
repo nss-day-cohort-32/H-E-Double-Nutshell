@@ -52,6 +52,8 @@ const messageForm = {
 
 
 
+
+
         sendButton.addEventListener("click", this.handleAddNewMessage);
 
 
