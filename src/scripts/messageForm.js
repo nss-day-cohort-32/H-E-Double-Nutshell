@@ -1,6 +1,5 @@
 import messageList from "./messageList"
 import messageDataCalls from "./messageDataCalls";
-import messages from "./messages"
 
 const messageForm = {
 

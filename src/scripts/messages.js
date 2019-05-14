@@ -1,6 +1,7 @@
 import messageDataCalls from "./messageDataCalls";
 
-// let setAttribute
+// let grabSendButton = document.querySelector(".send__button");
+// let grabUpdateButton = document.querySelector(".update__button");
 
 const messages = {
 
