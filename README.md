@@ -8,15 +8,11 @@
 
 3. run grunt from ```lib``` directory.
 
-## Group Members:
+### Group Members:
 
 Eliot Clarke
 Burak Koc
 Dan Storm
 Ricky McConnell
 
-![Webpage](Screen Shot 2019-05-14 at 9.27.13 AM.png)
-
-
-
-
+![Webpage][Screen Shot 2019-05-14 at 9.27.13 AM.png]

@@ -1,6 +1,4 @@
 import messageDataCalls from "./messageDataCalls";
-// import messageForm from "./messageForm";
-// import messageList from "./messageList";
 
 // let grabSendButton = document.querySelector(".send__button");
 // let grabUpdateButton = document.querySelector(".update__button");

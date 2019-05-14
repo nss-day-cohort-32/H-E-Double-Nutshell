@@ -1,6 +1,6 @@
-// import messageList from "./messageList"
+import messageList from "./messageList"
 import messageDataCalls from "./messageDataCalls";
-// import messages from "./messages"
+
 
 const messageForm = {
 
@@ -39,16 +39,15 @@ const messageForm = {
             let inputMessageId = document.querySelector("#messsage__edit__id").value;
             let inputMessageDate = messageForm.getTimeStamp();
             let editedMessage = {
-                // id: inputMessageId.value,
                 message: inputMessageContent.value,
                 date: inputMessageDate
             }
             console.log("lol", editedMessage)
 
-            // messageDataCalls.patchEditedMessage(inputMessageId, editedMessage)
-            //     .then(response => {
-            //         messageList.appendMessagesToDom()
-            //     })
+            messageDataCalls.patchEditedMessage(inputMessageId, editedMessage)
+                .then(response => {
+                    messageList.appendMessagesToDom()
+                })
         })
 
 
@@ -94,11 +93,11 @@ const messageForm = {
         }
 
         messageDataCalls.postNewMessage(newMessage)
-        // .then(response => {
-        //     messageList.appendMessagesToDom()
+            .then(response => {
+                messageList.appendMessagesToDom()
 
-        //     messageForm.clearInputForm()
-        // })
+                messageForm.clearInputForm()
+            })
     }
 }
 
